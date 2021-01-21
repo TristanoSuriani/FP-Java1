@@ -28,4 +28,14 @@ public class F {
 					filter(predicate, linkedList.rest()));
 		}
 	}
+
+	public static Object reduce(Object identity, BiFunction function, LinkedList linkedList) {
+		if (linkedList.isEmpty()) {
+			return identity;
+		} else {
+			return reduce(function.apply(identity, linkedList.first().getValue()),
+					function,
+					linkedList.rest());
+		}
+	}
 }

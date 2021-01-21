@@ -1,8 +1,11 @@
 package nl.suriani.fpjava1.app;
 
 import nl.suriani.fpjava1.app.functions.GreaterThan3;
+import nl.suriani.fpjava1.app.functions.Max;
 import nl.suriani.fpjava1.app.functions.PrintConsumer;
+import nl.suriani.fpjava1.app.functions.Sum;
 import nl.suriani.fpjava1.app.functions.Times2;
+import nl.suriani.fpjava1.lib.BiFunction;
 import nl.suriani.fpjava1.lib.Consumer;
 import nl.suriani.fpjava1.lib.F;
 import nl.suriani.fpjava1.lib.Function;
@@ -41,5 +44,30 @@ public class App {
 				F.filter(greaterThan3,
 						Optional.of(new Integer(3)).toLinkedList()));
 		// It doesn't print any value.
+
+		// It sums every elements of the list (1 2 3)
+		BiFunction sum = new Sum();
+		Integer sumOfIntegers = (Integer) F.reduce(0, sum, linkedList);
+		System.out.println(sumOfIntegers);
+		// It prints 6
+
+		// Find the max in an unordered list using reduce.
+		LinkedList unorderedList = LinkedList.empty()
+				.append(new Integer(15))
+				.append(new Integer(1))
+				.append(new Integer(3))
+				.append(new Integer(2))
+				.append(new Integer(16))
+				.append(new Integer(18))
+				.append(new Integer(2))
+				.append(new Integer(2));
+
+		BiFunction max = new Max();
+		Integer biggestNumber = (Integer) F.reduce(Integer.MIN_VALUE, max, unorderedList);
+		System.out.println(biggestNumber);
+
+		if (biggestNumber != 18)
+			throw new AssertionError();
+		// It prints 18
 	}
 }
