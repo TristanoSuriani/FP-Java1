@@ -22,7 +22,7 @@ public class F {
 		if (linkedList.isEmpty()) {
 			return linkedList;
 		} else {
-			return LinkedList.prepend((predicate.test(linkedList.first().getValue()) ?
+			return LinkedList.cons((predicate.test(linkedList.first().getValue()) ?
 						new Node(linkedList.first().getValue()) :
 						null),
 					filter(predicate, linkedList.rest()));

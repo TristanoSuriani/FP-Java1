@@ -10,9 +10,11 @@ public class LinkedList {
 	public static LinkedList append(Object value, LinkedList linkedList) {
 		if (linkedList.isEmpty()) {
 			return new LinkedList(new Node(value));
+		} else if (linkedList.rest().isEmpty()) {
+			return list(linkedList.first.getValue(), value);
 		} else {
-			return prepend(linkedList.first(),
-					prepend(linkedList.rest().first(), new LinkedList(new Node(value))));
+			return cons(linkedList.first(),
+					append(value, linkedList.rest()));
 		}
 	}
 
@@ -28,7 +30,7 @@ public class LinkedList {
 		if (linkedList.isEmpty()) {
 			return empty();
 		} else {
-			return prepend(linkedList.first(), linkedList.rest());
+			return cons(linkedList.first(), linkedList.rest());
 		}
 	}
 
@@ -48,12 +50,16 @@ public class LinkedList {
 		return first == null;
 	}
 
-	public static LinkedList prepend(Node first, LinkedList rest) {
+	public static LinkedList cons(Node first, LinkedList rest) {
 		if (first == null) {
 			return rest;
 		} else {
 			return new LinkedList(new Node(first.getValue(), rest.first()));
 		}
+	}
+
+	public static LinkedList list(Object o1, Object o2) {
+		return cons(new Node(o1), new LinkedList(new Node(o2)));
 	}
 
 	public int length() {
