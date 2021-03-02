@@ -7,7 +7,7 @@ public class LinkedList {
 		this.first = first;
 	}
 
-	public static LinkedList newEmptyList() {
+	public static LinkedList empty() {
 		return new LinkedList(null);
 	}
 
@@ -21,7 +21,7 @@ public class LinkedList {
 
 	public LinkedList rest() {
 		if (isEmpty()) {
-			return newEmptyList();
+			return empty();
 		} else {
 			return new LinkedList(first.getNext());
 		}
@@ -52,6 +52,16 @@ public class LinkedList {
 
 	public LinkedList append(Object value) {
 		return append(value, this);
+	}
+
+	public boolean contains(Object value) {
+		if (isEmpty()) {
+			return false;
+		} else if (first.getValue().equals(value)) {
+			return true;
+		} else {
+			return rest().contains(value);
+		}
 	}
 
 	public int length() {

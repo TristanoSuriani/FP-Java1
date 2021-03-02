@@ -15,7 +15,7 @@ import nl.suriani.fpjava1.lib.Predicate;
 
 public class App {
 	public static void main(String[] args) {
-		LinkedList linkedList = LinkedList.newEmptyList()
+		LinkedList linkedList = LinkedList.empty()
 				.append(new Integer(1))
 				.append(new Integer(2))
 				.append(new Integer(3));
@@ -52,7 +52,7 @@ public class App {
 		// It prints 6
 
 		// Find the max in an unordered list using reduce.
-		LinkedList unorderedList = LinkedList.newEmptyList()
+		LinkedList unorderedList = LinkedList.empty()
 				.append(new Integer(15))
 				.append(new Integer(1))
 				.append(new Integer(3))
